@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: 'tenmado-transform'
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - "7000:8080"
+    environment:
+      _ENV: "local"
+      _GCP_KEY_PATH: ".gcp_key/xxxx.json"
+    command: uvicorn main:app --reload --host 0.0.0.0 --port 8080
