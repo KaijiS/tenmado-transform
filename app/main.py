@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 
 from routers import samplerouter
+from routers import checkrouter
 
 app = FastAPI(
     title="tenmado-transform",
@@ -13,3 +14,4 @@ app = FastAPI(
 
 # ルーティングをinclude
 app.include_router(samplerouter.router)
+app.include_router(checkrouter.router, prefix="/check")
