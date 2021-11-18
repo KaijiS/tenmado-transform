@@ -1,0 +1,11 @@
+import_datasetname: "tenmado_import"
+interim_datasetname: "tenmado_interim"
+
+import_table_names:
+  - "t_fewdays_weather"
+  - "t_tomorrow_pops"
+  - "t_tomorrow_temps"
+  - "t_week_weather"
+  - "week_temps.csv"
+  - "past_tempavg.csv"
+  - "past_precopitationavg.csv"
