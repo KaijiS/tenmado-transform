@@ -17,6 +17,6 @@ steps:
       - "--region"
       - "$_DEPLOY_REGION"
       - "--platform"
-      - "managed"
+      - "$_PLATFORM"
 images:
   - "gcr.io/$PROJECT_ID/$_SERVICE_NAME:$COMMIT_SHA"
