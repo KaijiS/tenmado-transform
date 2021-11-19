@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from services import checkservice
 
 router = APIRouter()
 
@@ -11,4 +12,4 @@ async def check_load() -> dict[str:bool]:
 
     check_flag: bool = checkservice.check_load()
 
-    return {"check_load": check_flag}
+    return {"checkLoad": check_flag}
