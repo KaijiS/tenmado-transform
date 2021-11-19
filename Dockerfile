@@ -38,13 +38,13 @@ COPY ./app /usr/src/app
 RUN apt-get update
 RUN apt-get upgrade -y
 
-RUN apt install -y curl
+# RUN apt install -y curl
 
-RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /usr/src/app/google-cloud-sdk.tar.gz  \
-    && mkdir -p /usr/local/gcloud \
-    && tar -C /usr/local/gcloud -xvf /usr/src/app/google-cloud-sdk.tar.gz \
-    && /usr/local/gcloud/google-cloud-sdk/install.sh
-ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
+# RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /usr/src/app/google-cloud-sdk.tar.gz  \
+#     && mkdir -p /usr/local/gcloud \
+#     && tar -C /usr/local/gcloud -xvf /usr/src/app/google-cloud-sdk.tar.gz \
+#     && /usr/local/gcloud/google-cloud-sdk/install.sh
+# ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
 EXPOSE 8080
 CMD [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080" ]
