@@ -21,8 +21,9 @@ def check_load(config: dict):
 
     # 該当日のレコードをチェック
     dt_now: datetime.datetime = datetime.datetime.now()
+    today_str: str = dt_now.strftime("%Y-%m-%d")
     dt_onedayago = dt_now - datetime.timedelta(days=1)
-    dt_onedayago_str: str = dt_onedayago.strftime("%Y-%m-%d")
+    yesterday_str: str = dt_onedayago.strftime("%Y-%m-%d")
 
     query_base = files.read_file("sqls/checkservice/checkload.sql")
 
@@ -32,7 +33,12 @@ def check_load(config: dict):
 
         query = jinja2.embed_to_query(
             query_base=query_base,
-            params=config | {"table_name": table_name, "target_date": dt_onedayago_str},
+            params=config
+            | {
+                "table_name": table_name,
+                "yesterday": yesterday_str,
+                "today": today_str,
+            },
         )
 
         results = bq.exe_query(query)
