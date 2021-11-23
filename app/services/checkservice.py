@@ -32,7 +32,7 @@ def check_load(config: dict):
 
         query = jinja2.embed_to_query(
             query_base=query_base,
-            params=config | {"table_name": table_name, "target_date": onedayago},
+            params=config | {"table_name": table_name, "target_date": dt_onedayago_str},
         )
 
         results = bq.exe_query(query)
