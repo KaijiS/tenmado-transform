@@ -21,7 +21,6 @@ def check_load(config: dict):
 
     # 該当日のレコードをチェック
     dt_now: datetime.datetime = datetime.datetime.now()
-    today_str: str = dt_now.strftime("%Y-%m-%d")
     dt_onedayago = dt_now - datetime.timedelta(days=1)
     yesterday_str: str = dt_onedayago.strftime("%Y-%m-%d")
 
@@ -37,7 +36,6 @@ def check_load(config: dict):
             | {
                 "table_name": table_name,
                 "yesterday": yesterday_str,
-                "today": today_str,
             },
         )
 
