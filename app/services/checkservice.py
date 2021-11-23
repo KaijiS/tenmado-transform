@@ -1,19 +1,19 @@
 import datetime
 import logging
 
-from fastapi import Depends
-
 from utils.config import get_config
 from utils import files
 from utils import jinja2
 from utils import bq
+from utils.decorator import set_config
 
 # loggerの設定
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def check_load(config: dict = Depends(get_config)):
+@set_config
+def check_load(config: dict):
     """
     ロード処理が成功したか否かをチェック
     report_datetimeのレコードの有無で確認
