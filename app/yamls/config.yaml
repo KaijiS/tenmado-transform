@@ -16,5 +16,5 @@ import_table_names:
   tomorrow_temps: "t_tomorrow_temps"
   week_weather: "t_week_weather"
   week_temps: "t_week_temps"
-  past_tempavg: past_tempavg"
+  past_tempavg: "t_past_tempavg"
   past_precopitationavg: "t_past_precopitationavg"
