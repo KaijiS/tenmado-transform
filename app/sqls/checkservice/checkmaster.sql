@@ -27,7 +27,7 @@ select
     , r.city_code
     , r.city_name
 from week_weather l
-full outer join `{{ project_id }}.{{ setting_datasetname }}.{{ setting_table_view_names.largearea_city }} ` r
+full outer join `{{ project_id }}.{{ setting_datasetname }}.{{ setting_table_view_names.largearea_city }}` r
     using (meteorological_observatory_name, large_area_code, large_area_name)
 where
     r.city_code is null
