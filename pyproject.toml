@@ -17,6 +17,7 @@ google-cloud-core = "^2.2.1"
 google-cloud-logging = "^2.7.0"
 Jinja2 = "^3.0.3"
 PyYAML = "^6.0"
+pyarrow = "^6.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
