@@ -1,11 +1,20 @@
+setting_datasetname: "tenmado_setting"
 import_datasetname: "tenmado_import"
 interim_datasetname: "tenmado_interim"
 
+setting_table_view_names:
+  city: "m_city"
+  meteorologicalobservatory: "m_meteorologicalobservatory"
+  smallarea: "m_smallarea"
+  smallarea_city: "m_smallarea_city"
+  largearea: "mv_largearea"
+  largearea_city: "mv_largearea_city"
+
 import_table_names:
-  - "t_fewdays_weather"
-  - "t_tomorrow_pops"
-  - "t_tomorrow_temps"
-  - "t_week_weather"
-  - "t_week_temps"
-  - "t_past_tempavg"
-  - "t_past_precopitationavg"
+  fewdays_weather: "t_fewdays_weather"
+  tomorrow_pops: "t_tomorrow_pops"
+  tomorrow_temps: "t_tomorrow_temps"
+  week_weather: "t_week_weather"
+  week_temps: "t_week_temps"
+  past_tempavg: past_tempavg"
+  past_precopitationavg: "t_past_precopitationavg"
