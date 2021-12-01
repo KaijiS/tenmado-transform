@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 
 
 @set_config
-def fillna(config: dict) -> bool:
+def fillna(config: dict):
     """
     週情報の翌日分が抜けている情報を数日予報の値でうめていく
     """
@@ -35,6 +35,8 @@ def fillna(config: dict) -> bool:
     )
     tweekweather_results = bq.exe_query(query=tweekweather_query)
 
+    logger.info("[completed] week weather fillna")
+
     # t_week_tempsの補完
     tweektemps_query_base = files.read_file(
         "sqls/transformservice/t_week_temps_fillna.sql"
@@ -48,4 +50,6 @@ def fillna(config: dict) -> bool:
     )
     tweektemps_results = bq.exe_query(query=tweektemps_query)
 
-    return True
+    logger.info("[completed] week temps fillna")
+
+    return

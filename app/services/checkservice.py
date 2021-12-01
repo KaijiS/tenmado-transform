@@ -77,8 +77,9 @@ def check_master(config: dict) -> bool:
 
     if len(result_df) == 0:
         # 何もなければ早期return
+        logger.info("[completed] check master: no record")
         return False
 
-    logger.warning(result_df.to_string)
+    logger.warning("[completed] check master: " + result_df.to_string)
 
     return True
