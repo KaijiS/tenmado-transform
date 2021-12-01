@@ -9,11 +9,11 @@ def setup_logger():
 
     logging_client = Client()
     resource = Resource(
-        type="cloud_function",
+        type="cloud_run_revision",
         labels={
-            "function_name": os.environ.get("_FUNCTION_NAME"),
+            "service_name": os.environ.get("_SERVICE_NAME"),
             "project_id": os.environ.get("_PROJECT_ID"),
-            "region": os.environ.get("_REGION"),
+            "location": os.environ.get("_REGION"),
         },
     )
     handler = CloudLoggingHandler(logging_client, resource=resource)
