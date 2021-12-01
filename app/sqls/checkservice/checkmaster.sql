@@ -16,7 +16,6 @@ week_weather as (
         report_datetime between '{{ yesterday }} 00:00:00' and '{{ yesterday }} 23:59:59'
 )
 
-
 select
     l.get_datetime
     , l.report_datetime

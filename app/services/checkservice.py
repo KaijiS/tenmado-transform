@@ -1,7 +1,6 @@
 import datetime
 import logging
 
-from utils.config import get_config
 from utils import files
 from utils import jinja2
 from utils import bq
