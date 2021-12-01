@@ -80,6 +80,6 @@ def check_master(config: dict) -> bool:
         logger.info("[completed] check master: no record")
         return False
 
-    logger.warning("[completed] check master: " + result_df.to_string)
+    logger.warning("[completed] check master: " + result_df.to_string())
 
     return True
