@@ -43,10 +43,10 @@ def check_load(config: dict) -> bool:
         record_count = [row.cnt for row in results][0]
 
         if record_count == 0:
-            logger.warning("[completed] check load: no record")
+            logger.warning("[log] check load: {table_name} has no record")
             check_flag = False
-        else:
-            logger.info("[completed] check load: has records")
+
+    logger.info("[completed] check load")
 
     return check_flag
 
