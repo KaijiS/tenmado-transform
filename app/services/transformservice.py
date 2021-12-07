@@ -53,3 +53,29 @@ def fillna(config: dict):
     logger.info("[completed] week temps fillna")
 
     return
+
+
+@set_config
+def concat(config: dict):
+    """
+    週天気と週気温をjoinする
+    """
+
+    # 該当日のレコードをチェック
+    dt_now: datetime.datetime = datetime.datetime.now()
+    dt_onedayago = dt_now - datetime.timedelta(days=1)
+    yesterday_str: str = dt_onedayago.strftime("%Y-%m-%d")
+
+    query_base = files.read_file("sqls/transformservice/t_week_weather_temps.sql")
+    query = jinja2.embed_to_query(
+        query_base=query_base,
+        params=config
+        | {
+            "yesterday": yesterday_str,
+        },
+    )
+    results = bq.exe_query(query=tweekweather_query)
+
+    logger.info("[completed] concat week weather and temps")
+
+    return

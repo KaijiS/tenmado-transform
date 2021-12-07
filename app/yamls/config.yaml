@@ -22,3 +22,4 @@ import_table_names:
 interim_table_names:
   week_weather_fillna: "t_week_weather_fillna"
   week_temps_fillna: "t_week_temps_fillna"
+  week_weather_temps: "t_week_weather_temps"
