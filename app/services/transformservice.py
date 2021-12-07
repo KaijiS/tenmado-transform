@@ -18,7 +18,9 @@ def fillna(config: dict):
     """
 
     # 該当日のレコードをチェック
-    dt_now: datetime.datetime = datetime.datetime.now()
+    dt_now: datetime.datetime = datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=9))
+    )
     dt_onedayago = dt_now - datetime.timedelta(days=1)
     yesterday_str: str = dt_onedayago.strftime("%Y-%m-%d")
 
@@ -62,7 +64,9 @@ def concat(config: dict):
     """
 
     # 該当日のレコードをチェック
-    dt_now: datetime.datetime = datetime.datetime.now()
+    dt_now: datetime.datetime = datetime.datetime.now(
+        datetime.timezone(datetime.timedelta(hours=9))
+    )
     dt_onedayago = dt_now - datetime.timedelta(days=1)
     yesterday_str: str = dt_onedayago.strftime("%Y-%m-%d")
 
