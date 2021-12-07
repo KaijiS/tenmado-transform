@@ -1,4 +1,4 @@
-insert into `{{ project_id }}.{{ interim_datasetname }}.{{ interim_table_names.week_weather_temps }}`
+insert into `{{ project_id }}.{{ processed_datasetname }}.{{ processed_table_names.week_weather_temps }}`
 
 with
 
