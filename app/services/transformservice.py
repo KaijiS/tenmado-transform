@@ -74,7 +74,7 @@ def concat(config: dict):
             "yesterday": yesterday_str,
         },
     )
-    results = bq.exe_query(query=tweekweather_query)
+    results = bq.exe_query(query=query)
 
     logger.info("[completed] concat week weather and temps")
 
