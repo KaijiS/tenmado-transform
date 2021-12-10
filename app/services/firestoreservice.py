@@ -1,6 +1,7 @@
 import datetime
 import logging
 
+import pandas as pd
 from google.cloud import firestore
 
 from utils import files
