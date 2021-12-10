@@ -38,11 +38,6 @@ def insert(config: dict) -> bool:
     )
 
     result_df = bq.to_dataframe(query=query)
-    result_df["get_datetime"] = pd.to_datetime(result_df["get_datetime"])
-    result_df["report_datetime"] = pd.to_datetime(result_df["report_datetime"])
-    result_df["forecast_target_date"] = pd.to_datetime(
-        result_df["forecast_target_date"]
-    )
 
     # firestoreのコレクション準備
     """
@@ -79,12 +74,12 @@ def insert(config: dict) -> bool:
         ].copy()
 
         weekweather_doc_content = {}
-        weekweather_doc_content["get_datetime"] = large_area_result_df[
-            "get_datetime"
-        ].values[0]
-        weekweather_doc_content["report_datetime"] = large_area_result_df[
-            "report_datetime"
-        ].values[0]
+        weekweather_doc_content["get_datetime"] = pd.to_datetime(
+            large_area_result_df["get_datetime"].values[0]
+        )
+        weekweather_doc_content["report_datetime"] = pd.to_datetime(
+            large_area_result_df["report_datetime"].values[0]
+        )
         weekweather_doc_content[
             "meteorological_observatory_name"
         ] = large_area_result_df["meteorological_observatory_name"].values[0]
@@ -116,7 +111,9 @@ def insert(config: dict) -> bool:
         ).collection("forecasts")
         for index, row in large_area_result_df.iterrows():
             forecast_doc_content = {}
-            forecast_doc_content["forecast_target_date"] = row["forecast_target_date"]
+            forecast_doc_content["forecast_target_date"] = pd.to_datetime(
+                row["forecast_target_date"]
+            )
             forecast_doc_content["weather_code"] = row["weather_code"]
             forecast_doc_content["pop"] = row["pop"]
             forecast_doc_content["reliability"] = row["reliability"]
