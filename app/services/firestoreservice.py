@@ -136,7 +136,9 @@ def insert(config: dict) -> bool:
                 weekweather_doc_name,
                 forecast_doc_content["forecast_target_date"].strftime("%Y%m%d"),
             )
-            forecasts_subcollection.doc(forecast_doc_name).set(forecast_doc_content)
+            forecasts_subcollection.document(forecast_doc_name).set(
+                forecast_doc_content
+            )
 
     logger.info("[completed] insert to firestore")
 
