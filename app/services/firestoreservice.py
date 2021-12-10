@@ -37,6 +37,11 @@ def insert(config: dict) -> bool:
     )
 
     result_df = bq.to_dataframe(query=query)
+    result_df["get_datetime"] = pd.to_datetime(result_df["get_datetime"])
+    result_df["report_datetime"] = pd.to_datetime(result_df["report_datetime"])
+    result_df["forecast_target_date"] = pd.to_datetime(
+        result_df["forecast_target_date"]
+    )
 
     # firestoreのコレクション準備
     """
