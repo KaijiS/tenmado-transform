@@ -5,6 +5,7 @@ from utils import logger
 from routers import samplerouter
 from routers import checkrouter
 from routers import transformrouter
+from routers import firestorerouter
 
 app = FastAPI(
     title="tenmado-transform",
@@ -20,3 +21,4 @@ logger.setup_logger()
 app.include_router(samplerouter.router)
 app.include_router(checkrouter.router, prefix="/check")
 app.include_router(transformrouter.router, prefix="/transform")
+app.include_router(firestorerouter.router, prefix="/firestore")
