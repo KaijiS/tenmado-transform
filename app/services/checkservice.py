@@ -50,7 +50,10 @@ def check_load(config: dict) -> bool:
                     table_name=table_name
                 )
             )
-            check_flag = False
+
+            # なくても良いテーブルの場合はcheck_flagをFalseにしない
+            if table_name not in config["checkignore_import_table_names"].values():
+                check_flag = False
 
     logger.info("[completed] check load")
 

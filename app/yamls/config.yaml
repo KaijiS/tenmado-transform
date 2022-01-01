@@ -20,6 +20,10 @@ import_table_names:
   past_tempavg: "t_past_tempavg"
   past_precopitationavg: "t_past_precopitationavg"
 
+checkignore_import_table_names:
+  past_tempavg: "t_past_tempavg"
+  past_precopitationavg: "t_past_precopitationavg"
+
 interim_table_names:
   week_weather_fillna: "t_week_weather_fillna"
   week_temps_fillna: "t_week_temps_fillna"
