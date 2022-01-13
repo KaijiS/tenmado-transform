@@ -3,5 +3,5 @@ __pycache__
 
 app/local.env
 
-.gcp_key/*
-!.gcp_key/.gitkeep
+app/.gcp_key/*
+!app/.gcp_key/.gitkeep

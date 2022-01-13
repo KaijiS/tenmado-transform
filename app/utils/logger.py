@@ -1,5 +1,6 @@
 import os
 import logging
+from dotenv import load_dotenv
 from google.cloud.logging import Client, Resource
 from google.cloud.logging.handlers import CloudLoggingHandler, setup_logging
 
