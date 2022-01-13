@@ -7,7 +7,7 @@ services:
     volumes:
       - ./app:/usr/src/app
     ports:
-      - "7000:8080"
+      - "7010:8080"
     environment:
       _ENV: "local"
       _GCP_KEY_PATH: ".gcp_key/xxxx.json"

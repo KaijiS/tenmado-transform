@@ -19,6 +19,7 @@ Jinja2 = "^3.0.3"
 PyYAML = "^6.0"
 pyarrow = "^6.0.1"
 google-cloud-firestore = "^2.3.4"
+python-dotenv = "^0.19.2"
 
 [tool.poetry.dev-dependencies]
 black = "^21.10b0"
