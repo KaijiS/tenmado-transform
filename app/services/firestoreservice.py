@@ -15,7 +15,7 @@ logger.setLevel(logging.INFO)
 
 
 @set_config
-def insert(config: dict) -> bool:
+def insert_weekweather(config: dict) -> bool:
     """
     集計結果をfirestoreにinsertしていく
     """
@@ -140,6 +140,33 @@ def insert(config: dict) -> bool:
                 forecast_doc_content
             )
 
-    logger.info("[completed] insert to firestore")
+    logger.info("[completed] insert weekweather to firestore")
+
+    return True
+
+
+@set_config
+def insertmolargearea(config: dict) -> bool:
+
+    query_base = files.read_file("sqls/firestoreservice/selectmolargearea.sql")
+
+    query = jinja2.embed_to_query(query_base=query_base, params=config)
+
+    result_df = bq.to_dataframe(query=query)
+
+    db = firestore.Client()
+    largearea_collection = db.collection("largearea")
+
+    for index, row in result_df.iterrows():
+
+        largearea_collection.document(row["large_area_code"]).set(
+            {
+                "meteorological_observatory_name": "meteorological_observatory_name",
+                "large_area_code": row["large_area_code"],
+                "large_area_name": row["large_area_name"],
+            }
+        )
+
+    logger.info("[completed] insert molargearea to firestore")
 
     return True
