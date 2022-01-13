@@ -7,6 +7,9 @@ from google.cloud.logging.handlers import CloudLoggingHandler, setup_logging
 def setup_logger():
     """ルートロガーに CloudLoggingの設定をする"""
 
+    if os.environ.get("_ENV") == "local":
+        load_dotenv("local.env")
+
     logging_client = Client()
     resource = Resource(
         type="cloud_run_revision",
