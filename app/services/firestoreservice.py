@@ -161,7 +161,9 @@ def insertmolargearea(config: dict) -> bool:
 
         largearea_collection.document(row["large_area_code"]).set(
             {
-                "meteorological_observatory_name": "meteorological_observatory_name",
+                "meteorological_observatory_name": row[
+                    "meteorological_observatory_name"
+                ],
                 "large_area_code": row["large_area_code"],
                 "large_area_name": row["large_area_name"],
             }
