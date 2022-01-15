@@ -146,7 +146,7 @@ def insert_weekweather(config: dict) -> bool:
 
 
 @set_config
-def insertmolargearea(config: dict) -> bool:
+def insert_molargearea(config: dict) -> bool:
 
     query_base = files.read_file("sqls/firestoreservice/selectmolargearea.sql")
 
