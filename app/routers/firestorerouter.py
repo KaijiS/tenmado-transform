@@ -10,7 +10,7 @@ async def insert_weekweatner() -> dict[str:bool]:
     集計結果をfirestoreにinsertしていく
     """
 
-    firestoreservice.insert_weekweatner()
+    firestoreservice.insert_weekweather()
 
     return {"insert_to_firestore": True}
 
