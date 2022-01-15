@@ -1,5 +1,5 @@
 select
-    r.meteorological_observatory_name
+    r.meteorological_observatory_code
     , l.meteorological_observatory_name
     , l.large_area_code
     , l.large_area_name
