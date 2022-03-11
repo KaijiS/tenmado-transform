@@ -229,7 +229,7 @@ def insert_kubun(config: dict) -> bool:
                 )
             ]
 
-            large_area_df = meteorological_observatory_df.sort_values("area_code")
+            large_area_df = meteorological_observatory_df.sort_values("large_area_code")
 
             # エリア辞書一覧を取得
             large_areas = []
