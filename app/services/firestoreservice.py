@@ -236,8 +236,8 @@ def insert_kubun(config: dict) -> bool:
             for large_area_index, large_area_row in large_area_df.iterrows():
                 large_areas.append(
                     {
-                        "large_area_code": large_area_df["large_area_code"],
-                        "large_area_name": large_area_df["large_area_name"],
+                        "large_area_code": large_area_row["large_area_code"],
+                        "large_area_name": large_area_row["large_area_name"],
                     }
                 )
 
