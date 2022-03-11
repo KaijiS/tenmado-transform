@@ -189,26 +189,83 @@ def insert_kubunmolargearea(config: dict) -> bool:
     db = firestore.Client()
     kubunmolargearea_collection = db.collection("kubunmolargearea")
 
-    for index, row in result_df.iterrows():
+    # 区分一覧を取得
+    kubun_unique_df = (
+        result_df[["kubun_code", "kubun_name"]]
+        .drop_duplicates()
+        .sort_values("kubun_code")
+    )
 
-        kubunmolargearea_collection.document(
-            row["kubun_code"]
-            + "_"
-            + row["meteorological_observatory_code"]
-            + "_"
-            + row["large_area_code"]
-        ).set(
+    # 区分ごとに処理
+    for kubun_index, kubun_row in kubun_unique_df.iterrows():
+        kubun_df = result_df[
+            (result_df["kubun_code"] == kubun_row["kubun_code"])
+            & (result_df["kubun_name"] == kubun_row["kubun_name"])
+        ]
+
+        # その区分の中の気象台一覧を取得
+        meteorological_observatory_unique_df = (
+            kubun_df[
+                ["meteorological_observatory_code", "meteorological_observatory_name"]
+            ]
+            .drop_duplicates()
+            .sort_values("meteorological_observatory_code")
+        )
+
+        # 更に気象台ごとに処理
+        meteorological_observatories = []
+        for (
+            meteorological_observatory_index,
+            meteorological_observatory_row,
+        ) in meteorological_observatory_unique_df.iterrows():
+            meteorological_observatory_df = kubun_df[
+                (
+                    kubun_df[
+                        "meteorological_observatory_code"
+                        == meteorological_observatory_row[
+                            "meteorological_observatory_code"
+                        ]
+                    ]
+                )
+                & (
+                    kubun_df[
+                        "meteorological_observatory_name"
+                        == meteorological_observatory_row[
+                            "meteorological_observatory_name"
+                        ]
+                    ]
+                )
+            ]
+
+            large_area_df = meteorological_observatory_df.sort_values("area_code")
+
+            # エリア辞書一覧を取得
+            large_areas = []
+            for large_area_index, large_area_row in large_area_df.iterrows():
+                large_areas.append(
+                    {
+                        "large_area_code": large_area_df["large_area_code"],
+                        "large_area_name": large_area_df["large_area_name"],
+                    }
+                )
+
+            meteorological_observatories.append(
+                {
+                    "meteorological_observatory_code": meteorological_observatory_row[
+                        "meteorological_observatory_code"
+                    ],
+                    "meteorological_observatory_name": meteorological_observatory_row[
+                        "meteorological_observatory_name"
+                    ],
+                    "large_areas": large_areas,
+                }
+            )
+
+        kubunmolargearea_collection.document(row["kubun_code"]).set(
             {
-                "kubun_code": row["kubun_code"],
-                "kubun_name": row["kubun_name"],
-                "meteorological_observatory_code": row[
-                    "meteorological_observatory_code"
-                ],
-                "meteorological_observatory_name": row[
-                    "meteorological_observatory_name"
-                ],
-                "large_area_code": row["large_area_code"],
-                "large_area_name": row["large_area_name"],
+                "kubun_code": kubun_row["kubun_code"],
+                "kubun_name": kubun_row["kubun_name"],
+                "meteorological_observatory": meteorological_observatories,
             }
         )
 
