@@ -5,6 +5,7 @@ processed_datasetname: "tenmado_processed"
 
 setting_table_view_names:
   city: "m_city"
+  kubun_meteorologicalobservatory: "m_kubun_meteorologicalobservatory"
   meteorologicalobservatory: "m_meteorologicalobservatory"
   smallarea: "m_smallarea"
   smallarea_city: "m_smallarea_city"

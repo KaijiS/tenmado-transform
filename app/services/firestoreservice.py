@@ -175,3 +175,43 @@ def insert_molargearea(config: dict) -> bool:
     logger.info("[completed] insert molargearea to firestore")
 
     return True
+
+
+@set_config
+def insert_kubunmolargearea(config: dict) -> bool:
+
+    query_base = files.read_file("sqls/firestoreservice/selectkubunmolargearea.sql")
+
+    query = jinja2.embed_to_query(query_base=query_base, params=config)
+
+    result_df = bq.to_dataframe(query=query)
+
+    db = firestore.Client()
+    kubunmolargearea_collection = db.collection("kubunmolargearea")
+
+    for index, row in result_df.iterrows():
+
+        kubunmolargearea_collection.document(
+            row["kubun_code"]
+            + "_"
+            + row["meteorological_observatory_code"]
+            + "_"
+            + row["large_area_code"]
+        ).set(
+            {
+                "kubun_code": row["kubun_code"],
+                "kubun_name": row["kubun_name"],
+                "meteorological_observatory_code": row[
+                    "meteorological_observatory_code"
+                ],
+                "meteorological_observatory_name": row[
+                    "meteorological_observatory_name"
+                ],
+                "large_area_code": row["large_area_code"],
+                "large_area_name": row["large_area_name"],
+            }
+        )
+
+    logger.info("[completed] insert kubunmolargearea to firestore")
+
+    return True
