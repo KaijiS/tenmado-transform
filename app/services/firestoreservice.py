@@ -178,7 +178,7 @@ def insert_molargearea(config: dict) -> bool:
 
 
 @set_config
-def insert_kubunmolargearea(config: dict) -> bool:
+def insert_kubun(config: dict) -> bool:
 
     query_base = files.read_file("sqls/firestoreservice/selectkubunmolargearea.sql")
 
@@ -187,7 +187,7 @@ def insert_kubunmolargearea(config: dict) -> bool:
     result_df = bq.to_dataframe(query=query)
 
     db = firestore.Client()
-    kubunmolargearea_collection = db.collection("kubunmolargearea")
+    kubun_collection = db.collection("kubun")
 
     # 区分一覧を取得
     kubun_unique_df = (
@@ -220,20 +220,12 @@ def insert_kubunmolargearea(config: dict) -> bool:
         ) in meteorological_observatory_unique_df.iterrows():
             meteorological_observatory_df = kubun_df[
                 (
-                    kubun_df[
-                        "meteorological_observatory_code"
-                        == meteorological_observatory_row[
-                            "meteorological_observatory_code"
-                        ]
-                    ]
+                    kubun_df["meteorological_observatory_code"]
+                    == meteorological_observatory_row["meteorological_observatory_code"]
                 )
                 & (
-                    kubun_df[
-                        "meteorological_observatory_name"
-                        == meteorological_observatory_row[
-                            "meteorological_observatory_name"
-                        ]
-                    ]
+                    kubun_df["meteorological_observatory_name"]
+                    == meteorological_observatory_row["meteorological_observatory_name"]
                 )
             ]
 
@@ -261,7 +253,7 @@ def insert_kubunmolargearea(config: dict) -> bool:
                 }
             )
 
-        kubunmolargearea_collection.document(row["kubun_code"]).set(
+        kubun_collection.document(row["kubun_code"]).set(
             {
                 "kubun_code": kubun_row["kubun_code"],
                 "kubun_name": kubun_row["kubun_name"],
@@ -269,6 +261,6 @@ def insert_kubunmolargearea(config: dict) -> bool:
             }
         )
 
-    logger.info("[completed] insert kubunmolargearea to firestore")
+    logger.info("[completed] insert kubun to firestore")
 
     return True

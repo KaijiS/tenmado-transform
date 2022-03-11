@@ -26,12 +26,12 @@ async def insert_molargearea() -> dict[str:bool]:
     return {"insert_meteorologicalobservatorylargearea_to_firestore": True}
 
 
-@router.post("/insert/kubunmolargearea")
-async def insert_kubunmolargearea() -> dict[str:bool]:
+@router.post("/insert/kubun")
+async def insert_kubun() -> dict[str:bool]:
     """
     集計結果をfirestoreにinsertしていく
     """
 
-    firestoreservice.insert_kubunmolargearea()
+    firestoreservice.insert_kubun()
 
-    return {"insert_kubunmeteorologicalobservatorylargearea_to_firestore": True}
+    return {"insert_kubun_to_firestore": True}
