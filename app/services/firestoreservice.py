@@ -253,7 +253,7 @@ def insert_kubun(config: dict) -> bool:
                 }
             )
 
-        kubun_collection.document(row["kubun_code"]).set(
+        kubun_collection.document(kubun_row["kubun_code"]).set(
             {
                 "kubun_code": kubun_row["kubun_code"],
                 "kubun_name": kubun_row["kubun_name"],
